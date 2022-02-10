@@ -1,6 +1,5 @@
 def getBestMatch(matchContenters: list, targetString: str):
     from fuzzywuzzy import fuzz
-    #from fuzzywuzzy import process
 
     contenderScores = {}
     for item in matchContenters:
