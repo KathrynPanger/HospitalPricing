@@ -1,4 +1,5 @@
 from util import getRepresentativeMatch
+from util import getFirstNumber
 
 
 def test_getRepresentativeMatch():
@@ -14,3 +15,9 @@ def test_getRepresentativeMatch():
         "sergery",
     ]
     assert getRepresentativeMatch(testList) == "surgery"
+
+def test_getFirstNumber():
+    testString1 = '1903-3918'
+    testString2 = "19000 or 18001"
+    assert getFirstNumber(testString1) == 1903
+    assert getFirstNumber(testString2) == 19000
