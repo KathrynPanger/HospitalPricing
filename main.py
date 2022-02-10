@@ -1,8 +1,8 @@
 from document import Document
 from hospital import Hospital
-folder = "..\chargemaster-cdm-2021\Alameda Hospital"
+import os
+
+folder = "../chargemaster-cdm-2021/Alameda Hospital"
 testHospital = Hospital(folder)
-testFile = (testHospital.docNames[0])
-testPath = folder + f"\{testFile}"
-testDocument = Document(testPath)
-print(testDocument.sheets)
+docs = testHospital.documents
+excel_object = docs['106010735_CDM_All_2021.xlsx']

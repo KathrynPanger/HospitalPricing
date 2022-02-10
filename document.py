@@ -1,9 +1,9 @@
 import pandas as pd
+
 class Document:
-    def __init__ (self, docName: str):
-        self.docName = docName
-        self.xls = pd.ExcelFile(docName)
-        self.sheetNames = self.xls.sheet_names
+    def __init__ (self, data):
+        self.data = data
+        self.sheetNames = data.sheet_names
         self.sheets = {}
         for sheet_name in self.sheetNames:
-            self.sheets[sheet_name] = self.xls.parse(sheet_name)
+            self.sheets[sheet_name] = data.parse(sheet_name)
