@@ -11,23 +11,26 @@ def getBestMatch(matchContenders: list, targetString: str):
     return best_match
 
 
-def getRepresentativeMatch(matchContenders: list):
+def getRepresentativeMatch(matchContenders: list[str]) -> str:
     allScores = {}
+    wordCounts = {}
+    uniqueWords = frozenset(matchContenders)
+    for word in matchContenders:
+        wordCounts[word] = matchContenders.count(word)
     for word in matchContenders:
         if word not in allScores:
             contenderScore = 0
-            otherWords = set(matchContenders)
+            otherWords = uniqueWords - {word}
             for comparisonWord in otherWords:
                 score = fuzz.ratio(comparisonWord, word)
                 contenderScore += score
-            print(contenderScore)
-            allScores[word] = contenderScore * matchContenders.count(word)
+            allScores[word] = contenderScore * wordCounts[word]
     rep_match = max(allScores, key=allScores.get)
     print(allScores)
-    return rep_match
+    return rep_match.lower()
 
 
-def getFirstCDM(mixedCDMString):
+def getFirstNumber(mixedCDMString):
     entry = re.findall(r"[\w']+", mixedCDMString)
     for item in entry:
         try:
@@ -36,5 +39,5 @@ def getFirstCDM(mixedCDMString):
             continue
 
 
-print(getFirstCDM("1893-2948"))
+print(getFirstNumber("1893-2948"))
 
