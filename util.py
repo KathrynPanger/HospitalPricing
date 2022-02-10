@@ -26,7 +26,6 @@ def getRepresentativeMatch(matchContenders: list[str]) -> str:
                 contenderScore += score
             allScores[word] = contenderScore * wordCounts[word]
     rep_match = max(allScores, key=allScores.get)
-    print(allScores)
     return rep_match.lower()
 
 
