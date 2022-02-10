@@ -38,5 +38,7 @@ def getFirstNumber(mixedCDMString):
             continue
 
 
-print(getFirstNumber("1893-2948"))
-
+def getBestMatchingRow(df, labels: list[str]):
+    contenderScore = 0
+    for i in range len(df):
+        row = df.iloc[i]

@@ -10,3 +10,4 @@ one_doc = docs['106010735_CDM_All_2021.xlsx']
 sheets = (one_doc.sheets)
 ab1045 = sheets["AB 1045"]
 data = ab1045.data
+print(data)

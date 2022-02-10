@@ -12,4 +12,4 @@ class Document():
 class Sheet():
     def __init__(self, sheetName, data):
         self.sheetName = sheetName
-        self.data = data.parse(sheetName)
+        self.data = data.parse(sheetName, header=None)
