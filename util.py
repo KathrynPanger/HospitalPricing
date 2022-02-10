@@ -1,4 +1,6 @@
 from fuzzywuzzy import fuzz
+import re
+
 
 def getBestMatch(matchContenders: list, targetString: str):
     contenderScores = {}
@@ -7,6 +9,7 @@ def getBestMatch(matchContenders: list, targetString: str):
             contenderScores[item] = fuzz.ratio(item, targetString)
     best_match = max(contenderScores, key=contenderScores.get)
     return best_match
+
 
 def getRepresentativeMatch(matchContenders: list):
     allScores = {}
@@ -23,13 +26,15 @@ def getRepresentativeMatch(matchContenders: list):
     print(allScores)
     return rep_match
 
-def pickFirstCDM(mixedCDMString):
-    entry = mixedCDMString.split()
+
+def getFirstCDM(mixedCDMString):
+    entry = re.findall(r"[\w']+", mixedCDMString)
     for item in entry:
         try:
-            int(item)
-            return(item)
+            return int(item)
         except ValueError:
             continue
 
+
+print(getFirstCDM("1893-2948"))
 
