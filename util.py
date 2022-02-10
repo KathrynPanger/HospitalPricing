@@ -23,33 +23,13 @@ def getRepresentativeMatch(matchContenders: list):
     print(allScores)
     return rep_match
 
-test = [
-#    "CDM Master Sheet",
-    "CDM",
-    "CDM SHEET",
-    "cdm_sheet",
-    "cdm",
-    "chargemaster data",
-    "chargemaster",
-#    "CM data",
-    "CDM data",
-    "CM",
-    "The great book of Chargemaster Data"
-]
+def pickFirstCDM(mixedCDMString):
+    entry = mixedCDMString.split()
+    for item in entry:
+        try:
+            int(item)
+            return(item)
+        except ValueError:
+            continue
 
-test2 = [
-    "surgery",
-    "surgery",
-    "Surgery",
-    "Surgery",
-    "Surgery",
-    "Surgury",
-    "surgery",
-    "surgery",
-    "Surgery",
-    "surgerie",
-    "ergery",
-    "surgery",
-]
 
-print(getRepresentativeMatch(test))
