@@ -14,23 +14,25 @@ class Hospital:
         self.documents = {}
         # File
         self.docNames = [f for f in listdir(path) if isfile(join(path, f))]
-        for document in self.docNames:
-            filename = document.split(".")
+        for docName in self.docNames:
+            filename = docName.split(".")
             extension = filename[-1]
             correctFileExtensions = ["xls", "xlsx"]
             if extension in correctFileExtensions:
                 try:
-                    data = pd.ExcelFile(join(path, document))
-                    self.documents[document] = Document(data)
+                    data = pd.ExcelFile(join(path, docName))
+                    self.documents[docName] = Document(docName, data)
                 except XLRDError:
                     print(f"XLRDError: document not imported \n "
-                          f"{self.name}: {document}")
+                          f"{self.name}: {docName}")
                     continue
                 except IOError:
                     print(f"IOError: document not imported \n "
-                          f"{self.name}: {document}")
+                          f"{self.name}: {docName}")
                 except ValueError:
                     continue
+    def __repr__ (self):
+        return self.name
 
 
             

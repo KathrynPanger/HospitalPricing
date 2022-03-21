@@ -1,7 +1,8 @@
 import pandas as pd
 
 class Document():
-    def __init__ (self, data):
+    def __init__ (self, name, data):
+        self.name = name
         self.data = data
         self.sheetNames = data.sheet_names
         self.sheets = {}
