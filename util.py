@@ -6,7 +6,9 @@ import re
 def getBestMatch(matchContenders: list, targetString: str,
                  threshold: Optional[int] = None):
     contenderScores = {}
+    targetString = targetString.lower()
     for item in matchContenders:
+        item = item.lower()
         if item not in contenderScores:
             contenderScores[item] = fuzz.ratio(item, targetString)
     if threshold is not None and max(contenderScores.values()) < threshold:
@@ -19,6 +21,7 @@ def getBestMatch(matchContenders: list, targetString: str,
 def getRepresentativeMatch(matchContenders):
     allScores = {}
     wordCounts = {}
+    matchContenders = map(lambda x: x.lower, matchContenders)
     uniqueWords = frozenset(matchContenders)
     for word in matchContenders:
         wordCounts[word] = matchContenders.count(word)

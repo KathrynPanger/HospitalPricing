@@ -1,6 +1,7 @@
 #https://www.cms.gov/medicaremedicare-fee-service-paymentphysicianfeeschedpfs-relative-value-files/rvu21d
 from document import Document
 from hospital import Hospital
+from util import getBestMatch
 import os
 
 # folder = "../chargemaster-cdm-2021/Alameda Hospital"
@@ -14,9 +15,12 @@ import os
 
 directory = "../chargemaster-cdm-2021/"
 subfolders = [ f.path for f in os.scandir(directory) if f.is_dir() ]
-for folder in subfolders:
+for folder in subfolders[0:10]:
     hospital = Hospital(folder)
-    print(hospital.name)
-    docNames = hospital.docNames
+    documents = hospital.documents
     guesses = []
-    print(docNames)
+    for key, value in documents.items():
+        match = getBestMatch([name for name in value.sheetNames], "AB 1045", 38)
+        guesses.append(match)
+
+    print(guesses)
