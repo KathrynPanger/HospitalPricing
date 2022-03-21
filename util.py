@@ -1,17 +1,22 @@
 from fuzzywuzzy import fuzz
+from typing import Optional
 import re
 
 
-def getBestMatch(matchContenders: list, targetString: str):
+def getBestMatch(matchContenders: list, targetString: str,
+                 threshold: Optional[int] = None):
     contenderScores = {}
     for item in matchContenders:
         if item not in contenderScores:
             contenderScores[item] = fuzz.ratio(item, targetString)
-    best_match = max(contenderScores, key=contenderScores.get)
-    return best_match
+    if threshold is not None and max(contenderScores.values()) < threshold:
+        return None
+    else:
+        best_match = max(contenderScores, key=contenderScores.get)
+        return best_match
 
 
-def getRepresentativeMatch(matchContenders: list[str]) -> str:
+def getRepresentativeMatch(matchContenders):
     allScores = {}
     wordCounts = {}
     uniqueWords = frozenset(matchContenders)
@@ -37,8 +42,8 @@ def getFirstNumber(mixedCDMString):
         except ValueError:
             continue
 
-
-def getBestMatchingRow(df, labels: list[str]):
-    contenderScore = 0
-    for i in range len(df):
-        row = df.iloc[i]
+#
+# def getBestMatchingRow(df, labels: list[str]):
+#     contenderScore = 0
+#     for i in range len(df):
+#         row = df.iloc[i]

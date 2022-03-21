@@ -18,4 +18,5 @@ for folder in subfolders:
     hospital = Hospital(folder)
     print(hospital.name)
     docNames = hospital.docNames
+    guesses = []
     print(docNames)
