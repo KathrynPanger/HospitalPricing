@@ -15,15 +15,15 @@ import os
 
 directory = "../chargemaster-cdm-2021/"
 subfolders = [ f.path for f in os.scandir(directory) if f.is_dir() ]
+forms = []
 for folder in subfolders[0:10]:
     hospital = Hospital(folder)
     documents = hospital.documents
-    forms = []
     for key, value in documents.items():
         match = getBestMatch([name for name in value.sheetNames],
                              "AB 1045", 38)
         if match is not None:
                 forms.append(value.sheets[match])
 
-    print(forms)
+print(forms)
 
