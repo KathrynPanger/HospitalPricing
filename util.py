@@ -8,8 +8,8 @@ def getBestMatch(matchContenders: list, targetString: str,
     contenderScores = {}
     targetString = targetString.lower()
     for item in matchContenders:
-        item = item.lower()
-        if item not in contenderScores:
+        lowerItem = item.lower()
+        if lowerItem not in contenderScores:
             contenderScores[item] = fuzz.ratio(item, targetString)
     if threshold is not None and max(contenderScores.values()) < threshold:
         return None

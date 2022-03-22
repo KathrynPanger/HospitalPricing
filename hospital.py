@@ -36,10 +36,7 @@ class Hospital:
                 except ValueError:
                     self.failedDocs["ValueError"].append(docName)
                     continue
-                except:
-                    print(f"Unknown Error: document not imported \n "
-                          f"{self.name}: {docName}")
-                    self.failedDocs["OtherError"].append(docName)
+
     def __repr__ (self):
         return self.name
 
